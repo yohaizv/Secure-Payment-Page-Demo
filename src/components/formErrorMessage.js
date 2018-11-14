@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 
- const StyledErrorMessage = styled.span`
+ const FormErrorMessage = styled.span`
   display: flex;
   justify-content: start;
   color: #f44336;
 `;
-export default StyledErrorMessage;
+export default FormErrorMessage;

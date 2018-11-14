@@ -106,7 +106,6 @@ class SecurePaymentForm extends React.Component {
       this.showFieldsMissingMessage();
     }
     else{
-      debugger;
       this.props.history.push('/thank-you')
     }
   }

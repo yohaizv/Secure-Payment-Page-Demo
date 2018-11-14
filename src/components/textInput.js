@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
 import StyledErrorMessage from './formErrorMessage';
@@ -32,5 +33,20 @@ const TextInput = ({
     <StyledErrorMessage>{errorMessage}</StyledErrorMessage>
   </StyledInputContainer>
 );
+
+TextInput.prototype = {
+  // value: PropTypes.oneOfType([
+  //   PropTypes.string,
+  //   PropTypes.number,
+  //   PropTypes.boolean,
+  // ]),
+  value: PropTypes.any,
+  label: PropTypes.string,
+  errorMessage: PropTypes.string,
+  required: PropTypes.boolean,
+  type: PropTypes.string,
+  onChange: PropTypes.func,
+
+}
 
 export default TextInput;

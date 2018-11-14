@@ -7,6 +7,8 @@ const StyledContainer = styled.div`
 `;
 
 
-const AppBody = ({ children }) => <StyledContainer>{children}</StyledContainer>;
+const AppBody = (props) => <StyledContainer>{props.children}</StyledContainer>;
+
+
 
 export default AppBody;

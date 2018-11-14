@@ -1,8 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 import styled from "styled-components";
-import StyledErrorMessage from './formErrorMessage';
-
+import FormErrorMessage from './formErrorMessage';
 const StyledInputContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -12,32 +12,52 @@ const StyledInputContainer = styled.div`
 
 const SelectInput = ({
   value,
-  options=[],
+  options = [],
   label,
   errorMessage,
   required,
   onChange
-}) => (
-    <StyledInputContainer>
-  <TextField
-    select
-    label={label}
-    value={value}
-    onChange={onChange}
-    error={!!errorMessage}
-    margin="none"
-    variant="outlined"
-    fullWidth
-    inputProps={{required}}
-  >
-    {options.map(option => (
-      <option key={option.value} value={option.value}>
-        {option.label}
-      </option>
-    ))}
-  </TextField>
-  <StyledErrorMessage>{errorMessage}</StyledErrorMessage>
+}) =>
+  (<StyledInputContainer>
+    <TextField
+      select
+      required={required}
+      label={label}
+      value={value}
+      onChange={onChange}
+      error={!!errorMessage}
+      margin="none"
+      variant="outlined"
+      fullWidth
+    >
+      {options.map(option => (
+        <option key={option.value} value={option.value}>
+          {option.label}
+        </option>
+      ))}
+    </TextField>
+    <FormErrorMessage>{errorMessage}</FormErrorMessage>
   </StyledInputContainer>
-);
+  );
+
+SelectInput.prototype = {
+  // value: PropTypes.oneOfType([
+  //   PropTypes.string,
+  //   PropTypes.number,
+  //   PropTypes.boolean,
+  // ]),
+  value: PropTypes.any,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      value: PropTypes.any.isRequired
+    })
+  ),
+  label: PropTypes.string,
+  errorMessage: PropTypes.string,
+  required: PropTypes.boolean,
+  onChange: PropTypes.func,
+
+}
 
 export default SelectInput;

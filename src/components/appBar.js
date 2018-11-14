@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from 'prop-types';
+
 
 const StyledContainer = styled.div`
   padding: 0 10px 0 10px;
@@ -21,5 +23,11 @@ const AppBar = ({ title, logo }) => (
     <div>{logo}</div>
   </StyledContainer>
 );
+AppBar.propTypes = {
+  title:PropTypes.string.isRequired,
+  logo:PropTypes.node.isRequired
+}
+
 
 export default AppBar;
+
