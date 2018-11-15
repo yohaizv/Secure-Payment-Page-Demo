@@ -29,6 +29,7 @@ const TextInput = ({
       variant="outlined"
       type={type}
       fullWidth
+      style = {{backgroundColor:'white'}}
     />
     <StyledErrorMessage>{errorMessage}</StyledErrorMessage>
   </StyledInputContainer>

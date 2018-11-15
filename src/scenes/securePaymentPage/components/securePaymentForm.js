@@ -236,7 +236,7 @@ class SecurePaymentForm extends React.Component {
 
           <Grid item xs={4}>
             <StyledFormBottomContainer>
-              <Button variant="outlined" onClick={this.handleFormSubmit}>
+              <Button variant="outlined" onClick={this.handleFormSubmit} style = {{color:'white',backgroundColor:'#FFA219'}}>
                 Submit Payment
               </Button>
               {this.state.isRequiredFieldsMissing && (

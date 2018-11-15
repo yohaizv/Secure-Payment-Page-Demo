@@ -29,6 +29,7 @@ const SelectInput = ({
       margin="none"
       variant="outlined"
       fullWidth
+      style = {{backgroundColor:'white'}}
     >
       {options.map(option => (
         <option key={option.value} value={option.value}>
