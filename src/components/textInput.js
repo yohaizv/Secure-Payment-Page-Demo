@@ -35,15 +35,15 @@ const TextInput = ({
 );
 
 TextInput.prototype = {
-  // value: PropTypes.oneOfType([
-  //   PropTypes.string,
-  //   PropTypes.number,
-  //   PropTypes.boolean,
-  // ]),
-  value: PropTypes.any,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+  ]),
+  //value: PropTypes.any,
   label: PropTypes.string,
   errorMessage: PropTypes.string,
-  required: PropTypes.boolean,
+  required: PropTypes.bool,
   type: PropTypes.string,
   onChange: PropTypes.func,
 

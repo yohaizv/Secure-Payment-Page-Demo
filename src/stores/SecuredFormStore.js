@@ -1,7 +1,6 @@
 import { decorate, observable,computed } from "mobx";
 import { RULES_TYPES } from "../utils/validations.utils";
-class SecuredFormStore {
-  //isFormValid= false;
+class SecuredFormStore {  
   formInputs = {
     address: {
       value: "",

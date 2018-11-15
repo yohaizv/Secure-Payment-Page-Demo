@@ -41,12 +41,12 @@ const SelectInput = ({
   );
 
 SelectInput.prototype = {
-  // value: PropTypes.oneOfType([
-  //   PropTypes.string,
-  //   PropTypes.number,
-  //   PropTypes.boolean,
-  // ]),
-  value: PropTypes.any,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.bool,
+  ]),
+  //value: PropTypes.any,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
@@ -55,7 +55,7 @@ SelectInput.prototype = {
   ),
   label: PropTypes.string,
   errorMessage: PropTypes.string,
-  required: PropTypes.boolean,
+  required: PropTypes.bool,
   onChange: PropTypes.func,
 
 }

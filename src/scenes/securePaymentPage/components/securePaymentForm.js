@@ -1,11 +1,11 @@
 import React from "react";
+import { observer, inject } from "mobx-react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import TextInput from "../../../components/textInput";
 import SelectInput from "../../../components/selectInput";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
-import { observer, inject } from "mobx-react";
 import CreditCardIcon from "@material-ui/icons/CreditCard";
 import LocationIcon from "@material-ui/icons/LocationOn";
 import { IsInputValid } from "../../../utils/validations.utils";
@@ -107,8 +107,16 @@ class SecurePaymentForm extends React.Component {
     if (!isRequiredFieldsMissing()) {
       this.showFieldsMissingMessage();
     } else {
-      this.props.history.push("/thank-you");
+      this.props.UiStore.showProgressBar("Making A Payment");
+      this.makingPayment (()=>{
+        this.props.UiStore.hideProgressBar();
+        this.props.history.push("/thank-you");});      
     }
+  }
+  
+  //Mock function
+  makingPayment (callback){
+    setTimeout(callback,3000);
   }
 
   showFieldsMissingMessage() {
@@ -230,5 +238,5 @@ class SecurePaymentForm extends React.Component {
 }
 
 export default withRouter(
-  inject("SecuredFormStore")(observer(SecurePaymentForm))
+  inject("SecuredFormStore","UiStore")(observer(SecurePaymentForm))
 );

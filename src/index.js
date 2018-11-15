@@ -5,9 +5,12 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import SecuredFormStore from "./stores/SecuredFormStore";
+import UiStore from "./stores/UiStore";
+
+const Stores = {SecuredFormStore, UiStore};
 
 ReactDOM.render(
-  <Provider SecuredFormStore={SecuredFormStore}>
+  <Provider {...Stores}>
     <App />
   </Provider>,
   document.getElementById("root")
