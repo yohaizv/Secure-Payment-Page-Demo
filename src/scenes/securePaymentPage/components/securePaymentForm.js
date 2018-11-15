@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import TextInput from "../../../components/textInput";
 import SelectInput from "../../../components/selectInput";
@@ -46,7 +46,7 @@ class SecurePaymentForm extends React.Component {
     }));
 
     const monthSelectOptions = Array.from({ length: 12 }, (v, k) => ({
-      label: 1 + k,
+      label: 1 + k > 9 ?  `${1 + k}`:`0${1 + k}` ,
       value: 1 + k
     }));
 
@@ -72,9 +72,11 @@ class SecurePaymentForm extends React.Component {
     formInputs[name].value = event.target.value;
 
     //For current year: months in the past can’t be selected
-    if(name==='year' && 
-    event.target.value === new Date().getFullYear()){
-      formInputs.month.value=formInputs.month.value < (new Date().getMonth()+1) ? false :formInputs.month.value ;
+    if (name === "year" && event.target.value === new Date().getFullYear()) {
+      formInputs.month.value =
+        formInputs.month.value < new Date().getMonth() + 1
+          ? false
+          : formInputs.month.value;
     }
 
     this.validateField(
@@ -104,9 +106,8 @@ class SecurePaymentForm extends React.Component {
     const { isRequiredFieldsMissing } = this.props.SecuredFormStore;
     if (!isRequiredFieldsMissing()) {
       this.showFieldsMissingMessage();
-    }
-    else{
-      this.props.history.push('/thank-you')
+    } else {
+      this.props.history.push("/thank-you");
     }
   }
 
@@ -130,7 +131,6 @@ class SecurePaymentForm extends React.Component {
       selectsOptions,
       monthOptions
     } = this.props.SecuredFormStore;
-    
 
     return (
       <form noValidate autoComplete="off">
@@ -213,10 +213,7 @@ class SecurePaymentForm extends React.Component {
 
           <Grid item xs={4}>
             <StyledFormBottomContainer>
-              <Button
-                variant="outlined"
-                onClick={this.handleFormSubmit}
-              >
+              <Button variant="outlined" onClick={this.handleFormSubmit}>
                 Submit Payment
               </Button>
               {this.state.isRequiredFieldsMissing && (
@@ -232,4 +229,6 @@ class SecurePaymentForm extends React.Component {
   }
 }
 
-export default withRouter(inject("SecuredFormStore")(observer(SecurePaymentForm)));
+export default withRouter(
+  inject("SecuredFormStore")(observer(SecurePaymentForm))
+);
