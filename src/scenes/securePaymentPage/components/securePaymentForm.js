@@ -29,7 +29,8 @@ class SecurePaymentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isRequiredFieldsMissing: false
+      isRequiredFieldsMissing: false,
+      formErrorMessage: ""
     };
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
@@ -46,7 +47,7 @@ class SecurePaymentForm extends React.Component {
     }));
 
     const monthSelectOptions = Array.from({ length: 12 }, (v, k) => ({
-      label: 1 + k > 9 ?  `${1 + k}`:`0${1 + k}` ,
+      label: 1 + k > 9 ? `${1 + k}` : `0${1 + k}`,
       value: 1 + k
     }));
 
@@ -103,33 +104,47 @@ class SecurePaymentForm extends React.Component {
   }
 
   handleFormSubmit() {
-    const { isRequiredFieldsMissing } = this.props.SecuredFormStore;
+    const {
+      isRequiredFieldsMissing,
+      isAllFieldsValid,
+      isMakingPaymentEnabled
+    } = this.props.SecuredFormStore;
+
+    if (!isAllFieldsValid()) return;
     if (!isRequiredFieldsMissing()) {
-      this.showFieldsMissingMessage();
-    } else {
-      this.props.UiStore.showProgressBar("Making A Payment");
-      this.makingPayment (()=>{
-        this.props.UiStore.hideProgressBar();
-        this.props.history.push("/thank-you");});      
+      this.showFieldsMissingMessage("Please fill in the missing fields");
+      return;
     }
-  }
-  
-  //Mock function
-  makingPayment (callback){
-    setTimeout(callback,3000);
+    if (!isMakingPaymentEnabled) {
+      this.showFieldsMissingMessage("The form already submitted");
+      return;
+    }
+
+    this.props.UiStore.showProgressBar("Making A Payment");
+    this.makePayment(() => {
+      this.props.UiStore.hideProgressBar();
+      this.props.history.push("/thank-you");
+    });
   }
 
-  showFieldsMissingMessage() {
+  //Mock function
+  makePayment(callback) {
+    sessionStorage.setItem("formSubmitted", true);
+    setTimeout(callback, 3000);
+  }
+
+  showFieldsMissingMessage(formErrorMessage) {
     this.setState(
       {
-        isRequiredFieldsMissing: true
+        isRequiredFieldsMissing: true,
+        formErrorMessage
       },
       this.hideFieldsMissingMessage
     );
   }
   hideFieldsMissingMessage() {
     setTimeout(() => {
-      this.setState({ isRequiredFieldsMissing: false });
+      this.setState({ isRequiredFieldsMissing: false, formErrorMessage:'' });
     }, 3000);
   }
 
@@ -139,7 +154,7 @@ class SecurePaymentForm extends React.Component {
       selectsOptions,
       monthOptions
     } = this.props.SecuredFormStore;
-
+    const { formErrorMessage } = this.state;
     return (
       <form noValidate autoComplete="off">
         <Grid container spacing={8}>
@@ -226,7 +241,7 @@ class SecurePaymentForm extends React.Component {
               </Button>
               {this.state.isRequiredFieldsMissing && (
                 <StyledErrorMessage>
-                  Please fill in the missing fields
+                  {formErrorMessage}
                 </StyledErrorMessage>
               )}
             </StyledFormBottomContainer>
@@ -238,5 +253,5 @@ class SecurePaymentForm extends React.Component {
 }
 
 export default withRouter(
-  inject("SecuredFormStore","UiStore")(observer(SecurePaymentForm))
+  inject("SecuredFormStore", "UiStore")(observer(SecurePaymentForm))
 );

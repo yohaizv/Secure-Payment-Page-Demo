@@ -37,6 +37,11 @@ class SecuredFormStore {
     year: []
   };
 
+  get isMakingPaymentEnabled() {
+    const isEnabled = !sessionStorage.getItem('formSubmitted');
+    return isEnabled;
+  }
+
   
   get monthOptions() {
     const selectedYear = this.formInputs.year.value;
@@ -51,7 +56,12 @@ class SecuredFormStore {
     return newMonthOptions;
   }
 
-  
+  isAllFieldsValid = () => {
+    const isValid = Object.keys(this.formInputs)
+      .map(key => this.formInputs[key])
+      .every(input => !input.error);
+    return isValid;
+  };
 
   isRequiredFieldsMissing = () => {
     const isValid = Object.keys(this.formInputs)
