@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Can create a SecuredForm 1`] = `
+Object {
+  "countriesOptions": Array [],
+  "fields": Object {
+    "address": Object {
+      "error": false,
+      "errorMessage": "Invalid Input",
+      "name": "address",
+      "required": true,
+      "rulesTypes": Array [],
+      "value": "Tel Aviv",
+    },
+    "cardNumber": Object {
+      "error": false,
+      "errorMessage": "Invalid Input",
+      "name": "cardNumber",
+      "required": true,
+      "rulesTypes": Array [],
+      "value": "",
+    },
+    "country": Object {
+      "error": true,
+      "errorMessage": "Invalid Input",
+      "name": "country",
+      "required": true,
+      "rulesTypes": Array [],
+      "value": "",
+    },
+    "month": Object {
+      "error": false,
+      "errorMessage": "Invalid Input",
+      "name": "month",
+      "required": true,
+      "rulesTypes": Array [],
+      "value": "",
+    },
+    "year": Object {
+      "error": false,
+      "errorMessage": "Invalid Input",
+      "name": "year",
+      "required": true,
+      "rulesTypes": Array [],
+      "value": "",
+    },
+  },
+}
+`;
+
+exports[`Can create a SecuredForm 2`] = `
+Array [
+  Object {
+    "countriesOptions": Array [],
+    "fields": Object {
+      "address": Object {
+        "error": false,
+        "errorMessage": "Invalid Input",
+        "name": "address",
+        "required": true,
+        "rulesTypes": Array [],
+        "value": "Tel Aviv",
+      },
+      "cardNumber": Object {
+        "error": false,
+        "errorMessage": "Invalid Input",
+        "name": "cardNumber",
+        "required": true,
+        "rulesTypes": Array [],
+        "value": "",
+      },
+      "country": Object {
+        "error": false,
+        "errorMessage": "Invalid Input",
+        "name": "country",
+        "required": true,
+        "rulesTypes": Array [],
+        "value": "",
+      },
+      "month": Object {
+        "error": false,
+        "errorMessage": "Invalid Input",
+        "name": "month",
+        "required": true,
+        "rulesTypes": Array [],
+        "value": "",
+      },
+      "year": Object {
+        "error": false,
+        "errorMessage": "Invalid Input",
+        "name": "year",
+        "required": true,
+        "rulesTypes": Array [],
+        "value": "",
+      },
+    },
+  },
+  Object {
+    "countriesOptions": Array [],
+    "fields": Object {
+      "address": Object {
+        "error": false,
+        "errorMessage": "Invalid Input",
+        "name": "address",
+        "required": true,
+        "rulesTypes": Array [],
+        "value": "Tel Aviv",
+      },
+      "cardNumber": Object {
+        "error": false,
+        "errorMessage": "Invalid Input",
+        "name": "cardNumber",
+        "required": true,
+        "rulesTypes": Array [],
+        "value": "",
+      },
+      "country": Object {
+        "error": true,
+        "errorMessage": "Invalid Input",
+        "name": "country",
+        "required": true,
+        "rulesTypes": Array [],
+        "value": "",
+      },
+      "month": Object {
+        "error": false,
+        "errorMessage": "Invalid Input",
+        "name": "month",
+        "required": true,
+        "rulesTypes": Array [],
+        "value": "",
+      },
+      "year": Object {
+        "error": false,
+        "errorMessage": "Invalid Input",
+        "name": "year",
+        "required": true,
+        "rulesTypes": Array [],
+        "value": "",
+      },
+    },
+  },
+]
+`;
