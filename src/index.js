@@ -7,9 +7,6 @@ import * as serviceWorker from "./serviceWorker";
 import SecuredFormStore from "./stores/SecuredFormStore";
 import UiStore from "./stores/UiStore";
 
-import { onPatch } from "mobx-state-tree";
-import makeInspectable from "mobx-devtools-mst";
-
 
 const Stores = {SecuredFormStore, UiStore};
 
